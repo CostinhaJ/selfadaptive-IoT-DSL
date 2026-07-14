@@ -1733,7 +1733,7 @@
       </node>
     </node>
     <node concept="3aamgX" id="7Dtq_D5W3Se" role="3acgRq">
-      <ref role="30HIoZ" to="40ag:MV5QEUNUIv" resolve="Sensor_Event" />
+      <ref role="30HIoZ" to="40ag:MV5QEUNUIv" resolve="SensorEvent" />
       <node concept="gft3U" id="7Dtq_D5W5zx" role="1lVwrX">
         <node concept="356sEF" id="7Dtq_D5W5zB" role="gfFT$">
           <property role="TrG5h" value="topic" />
@@ -1818,7 +1818,7 @@
       </node>
     </node>
     <node concept="3aamgX" id="3ybqWr4sFwC" role="3acgRq">
-      <ref role="30HIoZ" to="40ag:5c6$$01LUV1" resolve="Exp_Node" />
+      <ref role="30HIoZ" to="40ag:5c6$$01LUV1" resolve="QoSNode" />
       <node concept="gft3U" id="3ybqWr4sGaX" role="1lVwrX">
         <node concept="356sEF" id="3ybqWr4sGb3" role="gfFT$">
           <property role="TrG5h" value="node" />
@@ -1847,7 +1847,7 @@
       </node>
     </node>
     <node concept="3aamgX" id="5Y7JhpqIZ1u" role="3acgRq">
-      <ref role="30HIoZ" to="40ag:2mUrnaMQct0" resolve="Exp_Cont" />
+      <ref role="30HIoZ" to="40ag:2mUrnaMQct0" resolve="QoSContainer" />
       <node concept="gft3U" id="5Y7JhpqIZSN" role="1lVwrX">
         <node concept="356sEF" id="5Y7JhpqIZSO" role="gfFT$">
           <property role="TrG5h" value="container" />
@@ -2044,7 +2044,7 @@
     </node>
     <node concept="3lhOvk" id="1RNaUxCLtDW" role="3lj3bC">
       <ref role="30HIoZ" to="40ag:2cS6XcGq5uy" resolve="IoT_System" />
-      <ref role="3lhOvi" node="1RNaUxCLyQ_" resolve="iot-system/cofig-map" />
+      <ref role="3lhOvi" node="1RNaUxCLyQ_" resolve="iot-system/config-map" />
     </node>
     <node concept="3lhOvk" id="2NYVsZUI7n4" role="3lj3bC">
       <ref role="30HIoZ" to="40ag:2cS6XcGq5uy" resolve="IoT_System" />
@@ -3339,7 +3339,7 @@
                       </node>
                       <node concept="1mIQ4w" id="5Y7JhpqDxMB" role="2OqNvi">
                         <node concept="chp4Y" id="5Y7JhpqDy2p" role="cj9EA">
-                          <ref role="cht4Q" to="40ag:5c6$$01LUV1" resolve="Exp_Node" />
+                          <ref role="cht4Q" to="40ag:5c6$$01LUV1" resolve="QoSNode" />
                         </node>
                       </node>
                     </node>
@@ -3363,7 +3363,7 @@
                       </node>
                       <node concept="1mIQ4w" id="5Y7JhpqDwdV" role="2OqNvi">
                         <node concept="chp4Y" id="5Y7JhpqDwnU" role="cj9EA">
-                          <ref role="cht4Q" to="40ag:2mUrnaMQct0" resolve="Exp_Cont" />
+                          <ref role="cht4Q" to="40ag:2mUrnaMQct0" resolve="QoSContainer" />
                         </node>
                       </node>
                     </node>
