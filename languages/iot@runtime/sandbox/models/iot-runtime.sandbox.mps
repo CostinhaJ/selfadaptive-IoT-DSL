@@ -294,7 +294,7 @@
             <property role="26MvwC" value="ppm" />
           </node>
           <node concept="2QtbNP" id="72esdhMUA4x" role="3uHU7B">
-            <ref role="2QtbNa" node="72esdhMUzRB" resolve="gas-b1" />
+            <ref role="2QtbNa" node="72esdhMUzRB" resolve="temp-b1" />
           </node>
         </node>
         <node concept="3eOSWO" id="72esdhMUA3w" role="3uHU7B">
@@ -333,7 +333,7 @@
       <property role="2A5aiJ" value="0°7'3''E" />
       <property role="xF1DA" value="50" />
       <ref role="MQ7mx" node="V6zdAuyRfT" resolve="edge-a1" />
-      <ref role="2Z02Rh" node="V6zdAvaAnH" resolve="hBeach/floor1/roomA1/smoke" />
+      <ref role="2Z02Rh" node="V6zdAvaAnH" resolve="floor1/roomA1/smoke" />
       <ref role="fk6Sr" node="5O_Idj2q1BG" resolve="CO" />
       <node concept="2L8lu2" id="V6zdAvcBMO" role="1sz1b6">
         <ref role="2L8lrf" node="V6zdAuuicB" resolve="RoomA1" />
@@ -374,7 +374,7 @@
         <ref role="MQ7m4" node="V6zdAuuicC" resolve="App1" />
       </node>
       <node concept="2L8lu2" id="V6zdAuyRg3" role="2L8lnZ">
-        <ref role="2L8lrf" node="V6zdAuuicA" resolve="RoomA2" />
+        <ref role="2L8lrf" node="V6zdAuuicA" resolve="RoomB1" />
       </node>
       <node concept="tIsEy" id="2D1rP4AgJ7b" role="2A2yXp">
         <ref role="tIsEA" node="V6zdAuyRg6" resolve="fog-f1" />
@@ -516,7 +516,7 @@
       <property role="xF1DA" value="23" />
       <ref role="fk6Sr" node="4ONOcanSE6J" resolve="Temperature" />
       <ref role="MQ7mx" node="V6zdAuyRfT" resolve="edge-a1" />
-      <ref role="2Z02Rh" node="V6zdAvaAnJ" resolve="hBeach/floor1/roomA1/temp" />
+      <ref role="2Z02Rh" node="V6zdAvaAnJ" resolve="floor1/roomA1/temp" />
       <node concept="2L8lu2" id="V6zdAveC87" role="1sz1b6">
         <ref role="2L8lrf" node="V6zdAuuicB" resolve="RoomA1" />
       </node>
@@ -529,7 +529,7 @@
       <property role="2A5aiJ" value="0°7'7''E" />
       <ref role="fk6Sv" node="6CCMDSRedj0" resolve="Valve" />
       <ref role="MQ7mx" node="V6zdAuyRfT" resolve="edge-a1" />
-      <ref role="2Z02Rh" node="V6zdAvaAnV" resolve="hBeach/floor1/roomA1/valve" />
+      <ref role="2Z02Rh" node="V6zdAvaAnV" resolve="floor1/roomA1/valve" />
       <node concept="2L8lu2" id="V6zdAveC8m" role="1sz1b6">
         <ref role="2L8lrf" node="V6zdAuuicB" resolve="RoomA1" />
       </node>
