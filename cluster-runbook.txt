@@ -18,9 +18,7 @@ PASSO 2 - Criar o cluster k3d
 (o --api-port força o kubeconfig a usar 127.0.0.1 em vez de
 host.docker.internal, que nao resolve nesta maquina)
 
-k3d cluster create hotel --servers 1 --agents 4 --api-port 127.0.0.1:6443 --wait --timeout 180s
-
-k3d cluster create hospital --servers 1 --agents 4 --api-port 127.0.0.1:6443 --wait --timeout 180s
+k3d cluster create <nome-do-cluster> --servers 1 --agents 4 --api-port 127.0.0.1:6443 --wait --timeout 180s
 
 
 ------------------------------------------------------------------------
@@ -29,16 +27,16 @@ PASSO 3 - Etiquetar os nos do cluster com os nomes do modelo
 (troca os valores da direita "node=..." pelos nomes de Node do teu modelo)
 
 #HOSPITAL
-kubectl label node k3d-hospital-agent-0 node=cloud-hospital --overwrite
-kubectl label node k3d-hospital-agent-1 node=fog-icu --overwrite
-kubectl label node k3d-hospital-agent-2 node=edge-icu102 --overwrite
-kubectl label node k3d-hospital-agent-3 node=edge-icu101 --overwrite
+kubectl label node k3d-<nome-do-cluster>-agent-0 node=cloud-hospital --overwrite
+kubectl label node k3d-<nome-do-cluster>-agent-1 node=fog-icu --overwrite
+kubectl label node k3d-<nome-do-cluster>-agent-2 node=edge-icu102 --overwrite
+kubectl label node k3d-<nome-do-cluster>-agent-3 node=edge-icu101 --overwrite
 
 #HOTEL
-kubectl label node k3d-hotel-agent-0 node=cloud-hotel --overwrite
-kubectl label node k3d-hotel-agent-1 node=fog-f1 --overwrite
-kubectl label node k3d-hotel-agent-2 node=edge-a1 --overwrite
-kubectl label node k3d-hotel-agent-3 node=edge-b1 --overwrite
+kubectl label node k3d-<nome-do-cluster>-agent-0 node=cloud-hotel --overwrite
+kubectl label node k3d-<nome-do-cluster>-agent-1 node=fog-f1 --overwrite
+kubectl label node k3d-<nome-do-cluster>-agent-2 node=edge-a1 --overwrite
+kubectl label node k3d-<nome-do-cluster>-agent-3 node=edge-b1 --overwrite
 
 kubectl get nodes --show-labels
 
@@ -55,36 +53,7 @@ PASSO 4 - Gerar o codigo a partir do modelo (dentro do MPS, nao terminal)
 ------------------------------------------------------------------------
 PASSO 5 - Deploy: correr o start.sh gerado
 ------------------------------------------------------------------------
-cd /c/Users/jcosta/Documents/selfadaptive-IoT-DSL/languages/iot@runtime/sandbox/source_gen/hospital/sandbox
+cd <caminho-da-pasta-gerada>
 bash start.sh
 
 kubectl get pods -A
-
-------------------------------------------------------------------------
-PASSO 6 - Verifica se está tudo em ordem
-------------------------------------------------------------------------
-
-kubectl get nodes
-kubectl get pods -A
-kubectl get deployments -A
-kubectl get services -A
-
--------------------------------------------------------------------------------------------------
-Se algum ficar com CrashLoopBackOff, ImagePullBackOff, Error ou Pending, obtenha os detalhes substituindo NOME_DO_POD por NAME referente ao STATUS:
--------------------------------------------------------------------------------------------------
-
-kubectl describe pod NOME_DO_POD
-
-kubectl describe pod c1
-kubectl describe pod c2
-kubectl describe pod c3
-kubectl describe pod c4
-kubectl describe pod c5
-
------------------------------------------------|
-Para verificar especificamente o MQTT Exporter:|
------------------------------------------------|
-
-kubectl get configmap -n monitoring mqtt-exporter-config
-kubectl get deployment -n monitoring mqtt-exporter
-kubectl get pods -n monitoring -l app=mqtt-exporter
