@@ -248,7 +248,7 @@
       <property role="TrG5h" value="Rule 1" />
       <property role="2A_Y2J" value="1" />
       <node concept="3K8SXd" id="72esdhMU_MH" role="2A_Y2i">
-        <ref role="3K8SWz" node="V6zdAuyRgc" resolve="C4" />
+        <ref role="3K8SWz" node="V6zdAuyRgc" resolve="c4" />
         <node concept="tIsEy" id="72esdhMU_MK" role="tIsEX">
           <ref role="tIsEA" node="V6zdAuyRg1" resolve="edge-b1" />
         </node>
@@ -258,7 +258,7 @@
       </node>
       <node concept="tIsEE" id="72esdhMUA1J" role="2A_Y2i">
         <property role="tIsED" value="1" />
-        <ref role="tIsEJ" node="V6zdAuuicE" resolve="App3" />
+        <ref role="tIsEJ" node="V6zdAuuicE" resolve="app3" />
         <node concept="2L8lu2" id="72esdhMUA1P" role="tIsIB">
           <ref role="2L8lrf" node="V6zdAupVSU" resolve="Hotel Beach" />
         </node>
@@ -340,7 +340,7 @@
       </node>
     </node>
     <node concept="2ZuOz_" id="V6zdAvaAnF" role="2ZpOB3">
-      <ref role="2ZuOzq" node="V6zdAuyRgc" resolve="C4" />
+      <ref role="2ZuOzq" node="V6zdAuyRgc" resolve="c4" />
     </node>
     <node concept="fk49P" id="V6zdAuyRfT" role="MQ7jN">
       <property role="TrG5h" value="edge-a1" />
@@ -354,8 +354,8 @@
         <ref role="2L8lrf" node="V6zdAuuicB" resolve="RoomA1" />
       </node>
       <node concept="2GUnFb" id="V6zdAuyRfZ" role="MQ7lO">
-        <property role="TrG5h" value="C1" />
-        <ref role="MQ7m4" node="V6zdAuuicC" resolve="App1" />
+        <property role="TrG5h" value="c1" />
+        <ref role="MQ7m4" node="V6zdAuuicC" resolve="app1" />
       </node>
       <node concept="tIsEy" id="2D1rP4AgJ79" role="2A2yXp">
         <ref role="tIsEA" node="V6zdAuyRg6" resolve="fog-f1" />
@@ -370,8 +370,8 @@
       <property role="fk49r" value="Raspbian" />
       <property role="fk499" value="2cS6XcGq5Ay/ARM" />
       <node concept="2GUnFb" id="V6zdAuyRg4" role="MQ7lO">
-        <property role="TrG5h" value="C2" />
-        <ref role="MQ7m4" node="V6zdAuuicC" resolve="App1" />
+        <property role="TrG5h" value="c2" />
+        <ref role="MQ7m4" node="V6zdAuuicC" resolve="app1" />
       </node>
       <node concept="2L8lu2" id="V6zdAuyRg3" role="2L8lnZ">
         <ref role="2L8lrf" node="V6zdAuuicA" resolve="RoomB1" />
@@ -389,12 +389,12 @@
       <property role="fk49r" value="Raspbian" />
       <property role="fk499" value="2cS6XcGq5Ay/ARM" />
       <node concept="2GUnFb" id="V6zdAuyRgb" role="MQ7lO">
-        <property role="TrG5h" value="C3" />
-        <ref role="MQ7m4" node="V6zdAuyRfX" resolve="App2" />
+        <property role="TrG5h" value="c3" />
+        <ref role="MQ7m4" node="V6zdAuyRfX" resolve="app2" />
       </node>
       <node concept="2GUnFb" id="V6zdAuyRgc" role="MQ7lO">
-        <property role="TrG5h" value="C4" />
-        <ref role="MQ7m4" node="V6zdAuuicE" resolve="App3" />
+        <property role="TrG5h" value="c4" />
+        <ref role="MQ7m4" node="V6zdAuuicE" resolve="app3" />
         <node concept="2ZjsHc" id="V6zdAvaAnH" role="2ZuSZ_">
           <property role="TrG5h" value="floor1/roomA1/smoke" />
         </node>
@@ -444,14 +444,14 @@
       <property role="fk49r" value="Ubuntu" />
       <node concept="2GUnFb" id="V6zdAuyRgk" role="MQ7lO">
         <property role="TrG5h" value="C5" />
-        <ref role="MQ7m4" node="V6zdAuyRfY" resolve="App4" />
+        <ref role="MQ7m4" node="V6zdAuyRfY" resolve="app4" />
       </node>
       <node concept="tIsEy" id="V6zdAuyRgi" role="2A2yXp">
         <ref role="tIsEA" node="V6zdAuyRg6" resolve="fog-f1" />
       </node>
     </node>
     <node concept="fk4LP" id="V6zdAuuicC" role="MQ7lN">
-      <property role="TrG5h" value="App1" />
+      <property role="TrG5h" value="app1" />
       <property role="MQ7ms" value="500" />
       <property role="MQ7lF" value="500" />
       <property role="2ZjsGw" value="8000" />
@@ -459,7 +459,7 @@
       <property role="2GUnF7" value="hotel/app1:latest" />
     </node>
     <node concept="fk4LP" id="V6zdAuuicE" role="MQ7lN">
-      <property role="TrG5h" value="App3" />
+      <property role="TrG5h" value="app3" />
       <property role="MQ7ms" value="700" />
       <property role="MQ7lF" value="700" />
       <property role="2ZjsGw" value="1883" />
@@ -467,7 +467,7 @@
       <property role="2GUnF7" value="mosquitto:2.0" />
     </node>
     <node concept="fk4LP" id="V6zdAuyRfX" role="MQ7lN">
-      <property role="TrG5h" value="App2" />
+      <property role="TrG5h" value="app2" />
       <property role="MQ7ms" value="900" />
       <property role="MQ7lF" value="900" />
       <property role="2ZjsGw" value="5000" />
@@ -475,7 +475,7 @@
       <property role="2GUnF7" value="hotel/app2:latest" />
     </node>
     <node concept="fk4LP" id="V6zdAuyRfY" role="MQ7lN">
-      <property role="TrG5h" value="App4" />
+      <property role="TrG5h" value="app4" />
       <property role="MQ7ms" value="2000" />
       <property role="MQ7lF" value="2000" />
       <property role="2ZjsGw" value="8080" />

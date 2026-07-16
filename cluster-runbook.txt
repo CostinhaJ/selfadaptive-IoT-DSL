@@ -27,10 +27,6 @@ PASSO 3 - Etiquetar os nos do cluster com os nomes do modelo
 ------------------------------------------------------------------------
 (troca os valores da direita "node=..." pelos nomes de Node do teu modelo)
 
-kubectl label node k3d-hotel-agent-0 node=cloud-hotel --overwrite
-kubectl label node k3d-hotel-agent-1 node=fog-f1 --overwrite
-kubectl label node k3d-hotel-agent-2 node=edge-a1 --overwrite
-kubectl label node k3d-hotel-agent-3 node=edge-b1 --overwrite
 
 kubectl get nodes --show-labels
 
@@ -69,15 +65,41 @@ Se algum ficar com CrashLoopBackOff, ImagePullBackOff, Error ou Pending, obtenha
 kubectl describe pod NOME_DO_POD
 
 kubectl describe pod c1
-kubectl describe pod c2
-kubectl describe pod c3
-kubectl describe pod c4
-kubectl describe pod c5
 
 -----------------------------------------------|
 Para verificar especificamente o MQTT Exporter:|
 -----------------------------------------------|
 
+Prometheus: 
+1- confirma que não há erros a carregar rules.yml ou a fazer scrape.
+kubectl logs -n monitoring <pod-prometheus> 
+
+2- Depois acede à UI
+
+kubectl port-forward -n monitoring svc/prometheus-service 9090:8080 
+e abre http://localhost:9090/targets — todos os targets devem estar UP.
+
+Grafana: 
+
+kubectl port-forward -n monitoring svc/grafana 3000:3000 
+e abre http://localhost:3000. 
+
+Confirma que os dashboards mostram dados (não painéis vazios/"No data").
+
+mqtt-exporter: 
+
 kubectl get configmap -n monitoring mqtt-exporter-config
 kubectl get deployment -n monitoring mqtt-exporter
 kubectl get pods -n monitoring -l app=mqtt-exporter No newline at end of file
+
+
+Expoe as portas:
+
+prometheus: 
+kubectl port-forward -n monitoring svc/prometheus-service 9090:8080
+http://localhost:9090
+
+grafana:
+kubectl port-forward -n monitoring svc/grafana 3000:3000
+
+http://localhost:3000
