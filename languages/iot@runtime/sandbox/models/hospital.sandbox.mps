@@ -218,7 +218,7 @@
       <property role="TrG5h" value="Rule 1 - Fog overload offloading" />
       <property role="2A_Y2J" value="1" />
       <node concept="3K8SXd" id="2Em3bF1pvVW" role="2A_Y2i">
-        <ref role="3K8SWz" node="f9c8flnwDrw" resolve="C4" />
+        <ref role="3K8SWz" node="f9c8flnwDrw" resolve="c4" />
         <node concept="tIsEy" id="1eEUdEC3kvG" role="tIsEX">
           <ref role="tIsEA" node="188kkH5eCM1" resolve="edge-icu102" />
         </node>
@@ -310,7 +310,7 @@
       </node>
     </node>
     <node concept="2ZuOz_" id="3yh34Bm8anz" role="2ZpOB3">
-      <ref role="2ZuOzq" node="f9c8flnwDrw" resolve="C4" />
+      <ref role="2ZuOzq" node="f9c8flnwDrw" resolve="c4" />
     </node>
     <node concept="fk49P" id="81L5kQ0TtAS" role="MQ7jN">
       <property role="TrG5h" value="edge-icu101" />
@@ -324,7 +324,7 @@
         <ref role="2L8lrf" node="aoSWZvTWnuq" resolve="Room101" />
       </node>
       <node concept="2GUnFb" id="5FQejeHE9U3" role="MQ7lO">
-        <property role="TrG5h" value="C1" />
+        <property role="TrG5h" value="c1" />
         <ref role="MQ7m4" node="1u0b4sKYooo" resolve="app1" />
       </node>
       <node concept="tIsEy" id="dDZFQo059Re" role="2A2yXp">
@@ -340,7 +340,7 @@
       <property role="fk49r" value="Raspbian" />
       <property role="fk499" value="2cS6XcGq5Ay/ARM" />
       <node concept="2GUnFb" id="8DlPcvWsO89" role="MQ7lO">
-        <property role="TrG5h" value="C2" />
+        <property role="TrG5h" value="c2" />
         <ref role="MQ7m4" node="1u0b4sKYooo" resolve="app1" />
       </node>
       <node concept="2L8lu2" id="6lXyV76irEt" role="2L8lnZ">
@@ -359,11 +359,11 @@
       <property role="fk49r" value="Raspbian" />
       <property role="fk499" value="2cS6XcGq5Ay/ARM" />
       <node concept="2GUnFb" id="1hGJWavqYJl" role="MQ7lO">
-        <property role="TrG5h" value="C3" />
+        <property role="TrG5h" value="c3" />
         <ref role="MQ7m4" node="bjAJAha9ZNl" resolve="app2" />
       </node>
       <node concept="2GUnFb" id="f9c8flnwDrw" role="MQ7lO">
-        <property role="TrG5h" value="C4" />
+        <property role="TrG5h" value="c4" />
         <ref role="MQ7m4" node="6xS63Yi8Z3y" resolve="app3" />
         <node concept="2ZjsHc" id="4NvDUX1dq3P" role="2ZuSZ_">
           <property role="TrG5h" value="icu/room101/heartrate" />
@@ -413,7 +413,7 @@
       <property role="fk49l" value="10.0.1.20" />
       <property role="fk49r" value="Ubuntu" />
       <node concept="2GUnFb" id="cACOXs5lg01" role="MQ7lO">
-        <property role="TrG5h" value="C5" />
+        <property role="TrG5h" value="c5" />
         <ref role="MQ7m4" node="fIwxizDLzal" resolve="app4" />
       </node>
       <node concept="tIsEy" id="7XKSEoDakdF" role="2A2yXp">
@@ -426,7 +426,7 @@
       <property role="MQ7lF" value="500" />
       <property role="2ZjsGw" value="8000" />
       <property role="2ZjsG_" value="30081" />
-      <property role="2GUnF7" value="hospital/patient-monitor:latest" />
+      <property role="2GUnF7" value="nginx:alpine" />
     </node>
     <node concept="fk4LP" id="6xS63Yi8Z3y" role="MQ7lN">
       <property role="TrG5h" value="app3" />
@@ -442,7 +442,7 @@
       <property role="MQ7lF" value="700" />
       <property role="2ZjsGw" value="5000" />
       <property role="2ZjsG_" value="30082" />
-      <property role="2GUnF7" value="hospital/alert-service:latest" />
+      <property role="2GUnF7" value="nginx:alpine" />
     </node>
     <node concept="fk4LP" id="fIwxizDLzal" role="MQ7lN">
       <property role="TrG5h" value="app4" />
@@ -450,7 +450,7 @@
       <property role="MQ7lF" value="2000" />
       <property role="2ZjsGw" value="8080" />
       <property role="2ZjsG_" value="30084" />
-      <property role="2GUnF7" value="hospital/dashboard:latest" />
+      <property role="2GUnF7" value="nginx:alpine" />
     </node>
     <node concept="MQ7l0" id="3Ro631tyPnJ" role="MQ7m6">
       <property role="TrG5h" value="Hospital" />
