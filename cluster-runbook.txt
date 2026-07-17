@@ -13,7 +13,16 @@ Abre um terminal NOVO (para o PATH do k3d/kubectl/mosquitto_pub estar atualizado
 
 
 ------------------------------------------------------------------------
-PASSO 2 - Criar o cluster k3d
+PASSO 2 - Gerar o codigo a partir do modelo (dentro do MPS, nao terminal)
+------------------------------------------------------------------------
+1. Abre o projeto no MPS.
+2. Botao direito no modelo pretendido (ex.: hospital.sandbox) -> Rebuild Model.
+3. Confirma o caminho da pasta gerada: botao direito no no "generated"
+   por baixo do modelo -> Reveal in Explorer.
+
+
+------------------------------------------------------------------------
+PASSO 3 - Criar o cluster k3d
 ------------------------------------------------------------------------
 (o --api-port força o kubeconfig a usar 127.0.0.1 em vez de
 host.docker.internal, que nao resolve nesta maquina)
@@ -23,31 +32,16 @@ k3d cluster create <nome-do-cluster> --servers 1 --agents 4 --api-port 127.0.0.1
 k3d cluster create hotel --servers 1 --agents 4 --api-port 127.0.0.1:6443 --wait --timeout 180s
 
 ------------------------------------------------------------------------
-PASSO 3 - Etiquetar os nos do cluster com os nomes do modelo
+PASSO 4 - Verificar os nos do cluster com os nomes do modelo
 ------------------------------------------------------------------------
-(troca os valores da direita "node=..." pelos nomes de Node do teu modelo)
-
 
 kubectl get nodes --show-labels
-
-
-------------------------------------------------------------------------
-PASSO 4 - Gerar o codigo a partir do modelo (dentro do MPS, nao terminal)
-------------------------------------------------------------------------
-1. Abre o projeto no MPS.
-2. Botao direito no modelo pretendido (ex.: hospital.sandbox) -> Rebuild Model.
-3. Confirma o caminho da pasta gerada: botao direito no no "generated"
-   por baixo do modelo -> Reveal in Explorer.
-
 
 ------------------------------------------------------------------------
 PASSO 5 - Deploy: correr o start.sh gerado
 ------------------------------------------------------------------------
 cd /c/Users/jcosta//Documents/selfadaptive-IoT-DSL/languages/iot@runtime/sandbox/source_gen/iot-runtime/sandbox
 bash start.sh
-
-kubectl get pods -A
-
 
 ------------------------------------------------------------------------
 PASSO 6 - Verifica se está tudo em ordem
@@ -62,12 +56,25 @@ kubectl get services -A
 Se algum ficar com CrashLoopBackOff, ImagePullBackOff, Error ou Pending, obtenha os detalhes substituindo NOME_DO_POD por NAME referente ao STATUS:
 -------------------------------------------------------------------------------------------------
 
-kubectl describe pod NOME_DO_POD
+kubectl describe pod NOME
 
-kubectl describe pod c1
+
+Explicar o que foi feito...
+
+O projeto foi feito para facilitar a geração de sistemas IoT Virtuais de forma intuitiva.
+Ela cria uma linguagem de alto nível que abstrai IMAGENS Docker, para posterior construção,
+sem problemas de dependências.
+
+A linguagem define 3 tipos de nós, bem como Sensores/Atuadores:
+
+-Edge  -> Nó mais próximo dos dispositivos físicos. Cada Sensor/Actuator tem uma referência gateway a um Edge_Node
+-Fog   -> Camada intermédia, mais recursos (4 CPU, 20GB). É aqui que está o broker MQTT que subscreve aos Sensores da Edge
+-Cloud -> É aqui que corre a stack de monitorização (Prometheus, Grafana, adaptation-engine)
+
+Sensores/Atuadores -> Dispositivos virtuais que simulam Dispositivos IoT e fornecem inteligência ao sistema, para processar e decidir.
 
 -----------------------------------------------|
-Para verificar especificamente o MQTT Exporter:|
+Para verificar as componentes independentes... |
 -----------------------------------------------|
 
 Prometheus: 
