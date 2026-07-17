@@ -464,7 +464,7 @@
       <property role="MQ7lF" value="700" />
       <property role="2ZjsGw" value="1883" />
       <property role="2ZjsG_" value="30070" />
-      <property role="2GUnF7" value="mosquitto:2.0" />
+      <property role="2GUnF7" value="eclipse-mosquitto:2.0" />
     </node>
     <node concept="fk4LP" id="V6zdAuyRfX" role="MQ7lN">
       <property role="TrG5h" value="app2" />

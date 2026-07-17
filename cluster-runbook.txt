@@ -35,6 +35,12 @@ k3d cluster create hotel --servers 1 --agents 4 --api-port 127.0.0.1:6443 --wait
 PASSO 4 - Verificar os nos do cluster com os nomes do modelo
 ------------------------------------------------------------------------
 
+kubectl label node k3d-hotel-agent-0 node=cloud-hotel --overwrite
+kubectl label node k3d-hotel-agent-1 node=fog-f1 --overwrite
+kubectl label node k3d-hotel-agent-2 node=edge-a1 --overwrite
+kubectl label node k3d-hotel-agent-3 node=edge-b1 --overwrite
+
+
 kubectl get nodes --show-labels
 
 ------------------------------------------------------------------------
@@ -57,6 +63,84 @@ Se algum ficar com CrashLoopBackOff, ImagePullBackOff, Error ou Pending, obtenha
 -------------------------------------------------------------------------------------------------
 
 kubectl describe pod NOME
+
+
+------------------------------------------------------------------------
+PASSO 7 - Correções conhecidas pós-deploy (broker MQTT / mqtt-exporter / adaptation-engine)
+------------------------------------------------------------------------
+Estas falhas acontecem sempre a seguir a um "start.sh" novo. Motivo: o gerador
+usa os valores "descritivos" do modelo (ex: ipAddress do Node = 192.168.10.3)
+para preencher configs que precisam de um endereço real e alcançável dentro
+do cluster k8s. Corrige por esta ordem.
+
+1) Pod do broker (ex.: "c4") fica Pending -> confirma primeiro que fizeste o
+   PASSO 4 (labels dos nós) — é a causa mais comum de qualquer pod ficar
+   Pending neste projeto.
+
+2) Se o broker ficar em ImagePullBackOff com a imagem "mosquitto:2.0":
+   essa imagem não existe no Docker Hub. Já foi corrigida no modelo
+   iot-runtime.sandbox.mps para "eclipse-mosquitto:2.0" — confirma que
+   fizeste Rebuild Model (PASSO 2) depois desta alteração antes do start.sh.
+   Se ainda tiveres um pod antigo com a imagem errada:
+   kubectl set image pod/c4 c4=eclipse-mosquitto:2.0
+
+3) Se o broker arrancar mas só aceitar ligações locais ("Starting in local
+   only mode" nos logs): o volume "mosquitto-config" está montado no
+   caminho errado (o mosquitto só lê /mosquitto/config/mosquitto.conf,
+   e o pods.yaml gerado monta em /config/mqtt.conf). Corrige o conteúdo
+   do configmap e recria o pod com o mountPath certo:
+
+   kubectl patch configmap mosquitto-config -n default --type merge -p \
+     '{"data":{"mosquitto.conf":"listener 1883\nallow_anonymous true\npersistence false\n"}}'
+
+   # edita a definição do pod do broker (no pods.yaml gerado, ou com
+   # `kubectl edit pod c4` numa cópia) para o volumeMount ficar:
+   #   mountPath: /mosquitto/config/mosquitto.conf
+   #   subPath: mosquitto.conf
+   # depois recria o pod (kubectl delete pod c4 -n default && kubectl apply -f <pod-corrigido>.yaml)
+
+4) mqtt-exporter em CrashLoopBackOff ("Connection refused" a 192.168.10.3):
+   o configmap "mqtt-exporter-config" aponta para o IP fictício do modelo
+   em vez do Service real do broker (<app-do-broker>-service, namespace
+   "default", porta interna 1883 — não o nodePort):
+
+   kubectl get configmap -n monitoring mqtt-exporter-config -o yaml > /tmp/cm.yaml
+   # edita /tmp/cm.yaml:
+   #   host: '192.168.10.3'  ->  host: 'app3-service.default.svc.cluster.local'
+   #   port: 30070           ->  port: 1883
+   kubectl apply -f /tmp/cm.yaml
+   kubectl delete pod -n monitoring -l app=mqtt-exporter
+
+5) adaptation-engine falha a executar ações (TimeoutError a ligar ao broker):
+   o mesmo IP fictício vem embutido na anotação "adaptations" dentro do
+   configmap "prometheus-rules" gerado. Corrige e reinicia Prometheus e
+   Alertmanager (o Alertmanager precisa de reiniciar para limpar o
+   histórico de notificações já enviadas e voltar a disparar):
+
+   kubectl get configmap -n monitoring prometheus-rules -o yaml > /tmp/rules.yaml
+   # edita /tmp/rules.yaml:
+   #   "broker_ip":"192.168.10.3"  ->  "broker_ip":"app3-service.default.svc.cluster.local"
+   #   "port":30070                ->  "port":1883
+   kubectl apply -f /tmp/rules.yaml
+   kubectl delete pod -n monitoring -l app=prometheus
+   kubectl delete pod -n monitoring -l app=alertmanager
+
+6) Testar manualmente sem esperar por sensores reais (os pods c1/c2/c3/c5
+   usam imagens fictícias "hotel/appN:latest" que nunca vão arrancar — não
+   há simulador de sensores neste projeto, publica os valores à mão):
+
+   # publicar um valor MQTT (não precisa de mosquitto_pub instalado no Windows,
+   # usa um pod descartável com o cliente mosquitto já incluído):
+   kubectl run mqtt-pub --image=eclipse-mosquitto:2.0 --restart=Never -i --rm \
+     --command -- mosquitto_pub -h app3-service.default.svc.cluster.local -p 1883 \
+     -t <topico, ex: floor1/roomB1/temp> -m <valor acima do threshold da regra>
+
+   # subscrever ao tópico do atuador para confirmar a reação do adaptation-engine:
+   kubectl run mqtt-sub --image=eclipse-mosquitto:2.0 --restart=Never --command -- \
+     mosquitto_sub -h app3-service.default.svc.cluster.local -p 1883 \
+     -t <topico do atuador, ex: floor1/lobby/alarm> -C 1 -W 60
+   kubectl logs mqtt-sub    # deve mostrar a mensagem da ação (ex: "On") se a regra disparou
+   kubectl delete pod mqtt-sub --force --grace-period=0
 
 
 Explicar o que foi feito...
