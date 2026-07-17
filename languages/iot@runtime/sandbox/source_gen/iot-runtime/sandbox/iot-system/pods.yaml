@@ -98,12 +98,12 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: C5
+  name: c5
   labels:
     app: app4
 spec:
   containers:
-    - name: C5
+    - name: c5
       image: hotel/app4:latest
       resources:
 

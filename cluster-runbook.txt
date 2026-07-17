@@ -43,7 +43,7 @@ PASSO 4 - Gerar o codigo a partir do modelo (dentro do MPS, nao terminal)
 ------------------------------------------------------------------------
 PASSO 5 - Deploy: correr o start.sh gerado
 ------------------------------------------------------------------------
-cd /c/Users/jcosta/Documents/selfadaptive-IoT-DSL/languages/iot@runtime/sandbox/source_gen/hospital/sandbox
+cd /c/Users/jcosta//Documents/selfadaptive-IoT-DSL/languages/iot@runtime/sandbox/source_gen/iot-runtime/sandbox
 bash start.sh
 
 kubectl get pods -A
