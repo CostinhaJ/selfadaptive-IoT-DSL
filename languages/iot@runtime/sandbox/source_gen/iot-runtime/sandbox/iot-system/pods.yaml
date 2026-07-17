@@ -76,7 +76,7 @@ metadata:
 spec:
   containers:
     - name: c4
-      image: mosquitto:2.0
+      image: eclipse-mosquitto:2.0
       resources:
 
         requests:

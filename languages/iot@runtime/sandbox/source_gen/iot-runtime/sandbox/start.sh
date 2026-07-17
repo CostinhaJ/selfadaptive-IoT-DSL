@@ -23,7 +23,7 @@ kubectl create -f node-exporter/daemonset.yaml
 kubectl create -f node-exporter/service.yaml
 
 # mqtt-exporter
-kubectl create -f mqtt-exporter/config-map-c4.yaml
+kubectl create -f mqtt-exporter/config-map.yaml
 kubectl create -f mqtt-exporter/deployment.yaml
 kubectl create -f mqtt-exporter/service.yaml
 
